@@ -1,0 +1,674 @@
+
+@font-face {
+  font-family: 'ralewayregular';
+  src: url('fonts/raleway-regular-webfont.woff2') format('woff2'),
+  url('../fonts/raleway-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'ralewaybold';
+  src: url('fonts/raleway-bold-webfont.woff2') format('woff2'),
+  url('../fonts/raleway-bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'ralewaylight';
+  src: url('fonts/raleway-light-webfont.woff2') format('woff2'),
+  url('../fonts/raleway-light-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+:root {
+  --decor-color: #24ba9f;
+
+}
+
+html {
+  font-family: 'ralewayregular', arial, sans-serif;
+  font-size: 10px;
+  text-align: left;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+img{
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+.container {
+  margin: 0 auto;
+  max-width: 1117px;
+
+}
+
+.container--flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.decor-text {
+  color: var(--decor-color);
+  font-family: 'ralewaybold';
+}
+
+
+.main-header {
+  background: black;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.6rem;
+}
+
+
+.main-header a {
+  color: #fff;
+}
+
+/****************MENU  GŁÓWNE*********************/
+.nav-list {
+  list-style-type: none;
+  font-size: 0; /* żeby pozbyć się białych zanków bo będzie inline block*/
+}
+
+.nav-list li{
+  display: inline-block;
+  font-size: initial;
+  position: relative; /* bo podmenu jest domyślnie absolute*/
+  margin: 0 10px;
+  padding: 16px 0;
+}
+
+.nav-list li::before{
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 0px;
+}
+
+.nav-list li:hover .nav-list__sub {
+  display: block; /* jak najedziemy to pokazuje sub tylko że jak wjedziemy miedzy listy to się chowa */
+  z-index: 3;
+}
+/*żeby się nie chował to trzeba zlobić before do nav-list li niewidoczny ale wydłużony w dół zeby był częscią listy wtedy się nie schowa*/
+.nav-list__sub {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 10px); /* +10% żeby opuścić poniżej */
+  transform: translateX(-50%);
+  width: 130px ;
+  text-transform: none;
+  background: #000;
+  padding: 11px 10px;
+  display: none; /* howamy podnaiwgację*/
+}
+
+/* trójkąt ma szer i wys 0*/
+.nav-list__sub:before {
+  content: '';
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-bottom-color: black;
+  position: absolute; /* pozycjonujmey absolut wychodzi z dokumenntu - względem każdego rodzica który nie jest static=absolut, relative*/
+  left: 50%;
+  top: -18px;
+  transform: translateX(-50%);
+
+}
+
+.nav-list__sub li {
+  padding: 6px 0;
+}
+
+.nav-list a:hover{
+  color: grey;
+}
+
+
+
+/* ciekawostka */
+/*.ex {
+  background-color: red;
+  height: 100vh;  //100vh =100% wysokości ekranu
+  height: 50vmin;  //bierze 50% mniejszego wymiary x,y
+}*/
+
+.slider{
+  background: linear-gradient(to bottom, #fff 40%, #c9c8d0);
+  height: calc(100vh - 50px);
+  font-size: 1.6rem;
+  text-align: center;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.track{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  transition: transform 300ms ease-in-out;
+
+}
+.slider .container, .slider__el {
+  height: 100%;
+}
+
+
+
+.slider__el{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider__col{
+  width: 50%;
+}
+
+.slider__col--small{
+  width: 40%
+}
+
+.slider__title{
+  font-size: 3.3rem;
+  margin-bottom: 40px;
+
+}
+
+.button{
+  display: inline-block; /*by dodawać marginesy i paddingi*/
+  background: var(--decor-color);
+  color: #fff;
+  font-size: 2.4rem;
+  margin: 20px 0;
+  padding: 7px 30px;
+  border-radius: 8px;
+  transition: all .3s;
+
+}
+
+.button:hover{
+  color: var(--decor-color);
+  background-color: #dfdfdf;
+}
+
+.slider__nav {
+  position: absolute;
+  top: 50%;
+  left: 40px;/*bedize dziedziczony dla prawwej strzałki trzeba zresetować za pomoca auto*/
+  transform: translateY(-50%);
+  z-index: 2;
+  background: none;
+  border: 0;
+  color: var(--decor-color);
+  font-size: 6rem;
+}
+
+
+.slider__nav--next{
+  left:auto;
+  right: 40px;/*bedize dziedziczony dla prawwej strzałki trzeba zresetować za pomoca auto*/
+}
+
+.spacing-y{
+  padding: 40px 0;
+
+}
+
+.offers .container{
+  align-items: flex-start;
+}
+
+
+.offers img{
+  width: 100%;
+  display: block;  /*inline block liczy białe znaki  dlatego zmieniamy na display block*/
+}
+
+
+.offers__col{
+  width: 32%;
+  font-size: 1.6rem;
+  max-height: 260px;         /*zabezpieczneie na wypadek różnych rozmiaarów obrazków*/
+  overflow: hidden;      /*nadmiar obrazka zostanie ukryty*/
+  position: relative;
+  border: 1px solid #ccc;
+  line-height: 1.3rem;
+
+}
+.offers__details{
+  position: absolute;
+  left: 0;
+  bottom: 15px;
+  width: 100%;
+  background: rgba(255,255,255, .2);
+  padding: 15px 15px 20px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+
+.title-decor{
+  position: relative;
+  font-size: 1.7rem;
+
+}
+
+.title-decor::before{
+  content: "";
+  width: 138px;
+  height: 7px;
+  background: var(--decor-color);
+  position: absolute;
+  left: -3px;
+  bottom: -7px;
+}
+
+
+.offers__spacing{
+  padding: 15px;
+}
+
+.offers p{
+  font-family: 'ralewayregular', arial, sans-serif;
+  margin: 30px 0;
+  letter-spacing: 1px;
+  color: gray;
+  line-height:1.7rem;
+
+}
+
+
+.deals{
+  height: calc(90vh);
+  background-color: #dfdfdf;
+}
+.price-head,
+.contact-head{
+  padding-top: 20px;
+  font-weight: bold;
+  text-transform:uppercase;
+}
+
+
+.deals__plans{
+  padding-top: 6rem;
+
+
+}
+
+.deals__plans--plan{
+  height: calc(80vh - 50px);
+  width: 32%;
+  border: 2px solid lightgrey;
+  background: white;
+  flex-direction: column;
+}
+.deals__plans--plan.plan2{
+  border: 2px solid var(--decor-color);
+}
+
+.deals__plans--text{
+  height: 10%;
+  margin-top: 20px;
+}
+
+.ball{
+  padding: 0;
+  height: 0;
+}
+.ball::before,
+.ball::after{
+
+  content: "";
+  display: block;
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border: 2px solid lightgrey;
+  left: 0;
+  right:0;
+  margin: auto;
+  top: -50px;
+  border-radius:50%;
+  background-color: white;
+
+}
+.ball::after{
+
+  content: "";
+  display: block;
+  width: 25px;
+  height: 25px;
+  border-radius:50%;
+  background-color: lightgrey;
+  top:-96px;
+
+}
+.ball.plan2::before ,
+.ball.plan2::after {
+  background: var(--decor-color);
+  border: 2px solid var(--decor-color);
+}
+
+.ball.plan2::after {
+  background: white;
+  border: 2px solid white;
+}
+.plan2{
+  background-color: var(--decor-color);
+}
+
+.deals__plans p{
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--decor-color);
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.plan2 p{
+  color: white;
+}
+
+
+.price-label{
+  height: 13rem;
+  width: 13rem;
+  border: 0.2rem solid lightgrey;
+  border-radius: 50%;
+  position: relative;
+  background-color: white;
+  margin-bottom: 30px;
+}
+
+
+.plan2 > .price-label{
+  border: 1px solid transparent;
+}
+
+
+.price-label p{
+  font-size: 4rem;
+  color: lightgrey;
+  margin-top: 25px;
+}
+.price-label p:last-child{
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+
+.price-label span{
+  font-size: 2rem;
+  vertical-align: top;
+}
+
+
+
+.buttonS {
+  display: inline-block;
+  background: var(--decor-color);
+  color: #fff;
+  font-size: 2.4rem;
+  padding: 7px 30px;
+  border-radius: 8px;
+  transition: all .3s;
+
+}
+.buttonS2 {
+  display: inline-block;
+  background: white;
+  color: var(--decor-color);
+  font-size: 2.4rem;
+  padding: 7px 30px;
+  border-radius: 8px;
+  transition: all .3s;
+}
+.inner-menu{
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-start;
+  width: 100%;
+  height: 200px;
+}
+
+
+.inner-menu__block,
+.inner-menu__block1,
+.inner-menu__block2{
+  font-size: 2.2rem;
+  height: 25%;
+  width: 100%;
+  padding: 10px;
+  color: grey;
+  background: #F0F0F0;
+  text-align: center;
+}
+.inner-menu__block1{
+  background: #E6E6E6;
+}
+.inner-menu__block2 {
+  background: white;
+}
+
+.blank{
+  background-color: white;
+  width: 100%;
+}
+.blank1{
+  background-color: var(--decor-color);
+  width: 100%;
+}
+
+
+.contact{
+  height: 400px;
+  margin-bottom:20px ;
+}
+
+
+
+.di-box{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+}
+
+.form {
+  width: 55%;
+  display: block;
+  margin-right: 30px;
+
+}
+
+input,
+textarea{
+  width: 100%;
+  height: 60px;
+  border: 2px solid var(--decor-color);
+  padding: 10px;
+  margin: 10px;
+  margin-left: 0;
+  font-family: 'ralewayregular';
+  font-size: 2.8rem;
+
+}
+
+textarea {
+  resize: none;
+  height: 200px;
+
+}
+.form-addPart{
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+
+.checkbox {
+  position: relative;
+  padding: 30px 10px 10px 20px;
+
+}
+.checkbox input {
+  display: block;
+  opacity: 0;
+  height: 48px;
+  position: absolute;
+  width: 48px;
+  cursor: pointer;
+}
+
+.checkbox label {
+  display: block;
+  padding-left: 65px;
+  position: relative;
+  font-size: 18px;
+  color: #cecece;
+  line-height: 120%;
+  padding-top: 5px;
+  cursor: pointer;
+}
+
+.checkbox label::before, .checkbox label::after {
+  border: 1px solid #27c7ab;
+  content: "";
+  display: block;
+  left: 0;
+  height: 48px;
+  position: absolute;
+  width: 48px;
+  top: 0;
+}
+.checkbox label::after {
+  background: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20preserveAspectRatio%3D%22xMidYMid%22%20width%3D%2233.875%22%20height%3D%2233%22%20viewBox%3D%220%200%2033.875%2033%22%3E%0A%20%20%3Cpath%20d%3D%22M9.470%2C15.209%20L14.061%2C24.104%20C14.061%2C24.104%2021.522%2C6.026%2033.287%2C-0.000%20C33.000%2C4.304%2031.852%2C8.035%2033.861%2C12.626%20C28.696%2C13.774%2018.078%2C26.687%2014.635%2C33.000%20C9.756%2C26.974%204.017%2C22.382%20-0.000%2C20.948%20L9.470%2C15.209%20Z%22%20fill%3D%22%2327c7ab%22/%3E%0A%3C/svg%3E%0A") no-repeat center;
+  border: 0;
+  display: none;
+}
+
+.checkbox input:checked + label::after {
+  display: block;
+}
+
+
+input[type="submit"].buttonS{
+    width: 400px;
+}
+
+
+/*footer*/
+.footer__main{
+  height: 100px;
+  margin: 50px 0;
+}
+
+
+
+.footer__allRights{
+  color: grey;
+  font-family: 'ralewayregular', arial, sans-serif;
+  font-size: 1.8rem;
+  width: 60%;
+}
+.footer__sub{
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+}
+
+
+.footer__logo{
+  padding:10px;
+  font-size: 1.8rem;
+  color: grey;
+  font-family: 'ralewayregular', arial, sans-serif;
+}
+
+.footer__socialM{
+  margin-left: 25px;
+}
+
+
+@media (max-width: 600px) {
+
+    .main-header>.container--flex,
+    .slider__el>.container--flex,
+    .deals__conatiner>.container--flex,
+    .contact>.container>.di-box,
+    .footer__main>.di-box,
+    .footer__sub{
+        flex-direction: column;
+    }
+
+    .offers>.container--flex{
+        flex-direction: column;
+
+    }
+    .offers__col{
+        width: 100%;
+        justify-content: center;
+    }
+    .deals{
+        height: 100%;
+        padding: 20px;
+    }
+    .deals__conatiner>.deals__plans{
+
+        height: 33%;
+        justify-content: center;
+    }
+    .deals__plans--plan{
+        width: 100%;
+        margin-bottom: 200px;
+    }
+    .form,
+    .form-addPart{
+        width: 100%;
+        padding: 20px;
+        margin-bottom: 10px;
+    }
+    .footer__main>.di-box{
+        margin-top: 500px;
+        width: 100%;
+        justify-content: center;
+    }
+    .footer__sub,
+    .footer__allRights,
+    .footer__logo{
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
+}
