@@ -306,7 +306,7 @@ a {
 
 
 .deals{
-  height: calc(90vh);
+
   background-color: #dfdfdf;
 }
 .price-head,
@@ -324,7 +324,7 @@ a {
 }
 
 .deals__plans--plan{
-  height: calc(80vh - 50px);
+  height: 530px);
   width: 32%;
   border: 2px solid lightgrey;
   background: white;
