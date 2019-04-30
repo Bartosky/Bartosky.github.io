@@ -54,37 +54,45 @@ document.addEventListener("DOMContentLoaded",function(){
 
 ///////////////////////////WALIDACJA FORMULARZA ////////////////
 
-let name = $('[name="Name"]').val();
-let email = $('[name = "email"]').val();
-let agree = $('#agree');
-    $('.buttonS').on('click', function(e){
-        e.preventDefault();
-        console.log(agree);
-        // walidacja imienia
-        if (name.length <= 2){
+
+    var form = document.querySelector('form');
+
+
+
+    form.addEventListener('submit', function (e) {
+        // e.preventDefault();
+
+        var email = document.querySelector('#email');
+        var name = document.querySelector('#name');
+
+
+
+
+        // walidacaja name
+
+        if(name.value.length <= 2){
+            alert('Twoje imię jest za krótkie');
             e.preventDefault();
-            alert('Twoje imię jest za krótie');
-        }else{
-
-
+            return false;
         }
-        // walidacja emaila
-        if (email.indexOf('@')===-1){
+        // walidajca emaila
+        if(email.value.indexOf('@') === -1){
+            alert('Email musi posiadać znak @');
             e.preventDefault();
-            alert('email musi zawierac @');
-        }else{
-
-
+            return false;
         }
-
-
         // Check-box
         if (agree.checked === false){  // (!agree.checked) - to samo w formie zaprzeczenia
             alert('Musisz zaakceptować warunki');
             e.preventDefault();
             return false;
         }
-    })
+
+    });
+
+
+
+
 
 
 
